@@ -1,0 +1,24 @@
+﻿{
+    "Name": "Filter Feature",
+    "Environment": 1,
+    "Platform":  1,
+    "FilterValues": [
+        "00000000-0000-0000-0000-000000000001",
+        "00000000-0000-0000-0000-000000000003",
+        "00000000-0000-0000-0000-000000000005"
+    ],
+    "SubFeatureToggles": [
+        {
+            "Name": "SubFeature 1",
+            "EnabledEnvironments": 2,
+            "CommandType": null,
+            "Command": null
+        },
+        {
+            "Name": "SubFeature 2",
+            "EnabledEnvironments": 2,
+            "CommandType": null,
+            "Command": null
+        }
+    ]
+}

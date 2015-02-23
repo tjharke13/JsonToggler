@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>JsonToggler Features</h2>
+        <p>
+            This is the implementation using JsonToggler library and reading directly from JSON files.
+        </p>
+        <p>@Html.ActionLink("Learn More", MVC.JsonToggler.Index(), new { @class = "btn btn-default" }) </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Disconnected API Features</h2>
+        <p>An exmaple of accessing feature toggles with no reference to the JsonToggler library.</p>
+        <p>@Html.ActionLink("Learn More", MVC.DisconnectedApiToggle.Index(), new { @class = "btn btn-default" }) </p>
+    </div>
+    <div class="col-md-4">
+        <h2>JsonToggler API Features</h2>
+        <p>This shows how to use the JsonToggler library by getting the feature toggles from an API.</p>
+        <p>@Html.ActionLink("Learn More", MVC.ApiJsonToggler.Index(), new { @class = "btn btn-default" }) </p>
+    </div>
+</div>

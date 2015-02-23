@@ -1,0 +1,38 @@
+﻿{
+    "Environment": 31,
+    "Platform":  1,
+    "CommandType": null,
+    "Command": null,
+    "SubFeatureToggles": [
+        {
+            "Name": "SubFeature 1",
+            "Environment": 31,
+            "Platform":  1,
+            "CommandType": null,
+            "Command": null
+        },
+        {
+            "Name": "SubFeature 2",
+            "Environment": 7,
+            "Platform":  3,
+            "CommandType": null,
+            "Command": null
+        },
+        {
+            "Name": "SubFeature 3",
+            "Environment": 16,
+            "Platform":  4,
+            "CommandType": null,
+            "Command": null
+        }
+    ],
+    "SpecificEntities": [
+        1,
+        2,
+        3,
+        1234567891234,
+        9999999999999,
+        "00000000-0000-0000-0000-000000000000",
+        "1A3F03EE-2A4A-4D43-8F9B-25F95CDAEF14"
+    ]
+}

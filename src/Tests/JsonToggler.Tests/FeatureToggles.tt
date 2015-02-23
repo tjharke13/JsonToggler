@@ -1,0 +1,130 @@
+﻿<#@ template hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)src\Tests\JsonToggler.Tests\bin\Debug\Newtonsoft.Json.dll" #>
+<#@ assembly name="$(SolutionDir)src\Tests\JsonToggler.Tests\bin\Debug\JsonToggler.dll" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="EnvDTE" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="JsonToggler" #>
+<#@ output extension=".cs" #>
+<#
+var hostServiceProvider = (IServiceProvider)Host;
+var dte = 
+    (EnvDTE.DTE)hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
+var dteProject = (EnvDTE.Project)activeSolutionProjects.GetValue(0);
+var defaultNamespace = 
+    dteProject.Properties.Item("DefaultNamespace").Value;
+var templateDir = Path.GetDirectoryName(Host.TemplateFile);
+var fullPath = dteProject.Properties.Item("FullPath").Value.ToString();
+fullPath = 
+    fullPath.EndsWith("\\") 
+        ? fullPath.Substring(0, fullPath.Length-1) 
+        : fullPath;
+var subNamespace = 
+    templateDir.Replace(fullPath, string.Empty).Replace("\\", ".");
+var fileNamespace = string.Concat(defaultNamespace, subNamespace);
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using JsonToggler;
+
+<#
+var _jsonDirectory = "C:\\Users\\tjh5315\\Source\\Repos\\Sandbox\\JsonToggler\\src\\Tests\\JsonToggler.Tests\\Json";
+var jsonTogglerService = new JsonTogglerService(_jsonDirectory);
+var featureToggles = jsonTogglerService.GetAllFeatureToggles();
+
+foreach(var toggle in featureToggles)
+{
+
+var featureName = toggle.Name.Replace(" ", "");
+#>
+namespace <#= fileNamespace #>.FeatureToggles
+{
+	public partial class <#= featureName #> : JsonFeatureToggler<<#= featureName #>>
+	{
+		public <#= featureName #>()
+        { }
+
+		public <#= featureName #>(IJsonTogglerSection jsonTogglerSection) : base(jsonTogglerSection)
+        { }
+
+<#
+if(toggle.SubFeatureToggles != null)
+{
+foreach(var subFeature in toggle.SubFeatureToggles)
+{
+#>
+		public virtual SubFeatureToggle <#= subFeature.Name.Replace(" ", "_") #>()
+		{
+			return base.GetSubFeature("<#= subFeature.Name #>", null);
+		}
+
+		public SubFeatureToggle  <#= subFeature.Name.Replace(" ", "_") #>(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("<#= subFeature.Name #>", jsonTogglerSection);
+        }
+
+<#
+}
+}
+#>
+	}
+}
+
+namespace <#= fileNamespace #>.ApiFeatureToggles
+{
+
+	public partial class <#= featureName #>  : FeatureToggle
+	{
+		public <#= featureName #>()
+        { }
+
+		public <#= featureName #>(IJsonTogglerSection jsonTogglerSection) : base(jsonTogglerSection)
+        { }
+
+<#
+if(toggle.SubFeatureToggles != null)
+{
+foreach(var subFeature in toggle.SubFeatureToggles)
+{
+#>
+		public virtual SubFeatureToggle <#= subFeature.Name.Replace(" ", "_") #>()
+		{
+			return base.GetSubFeature("<#= subFeature.Name #>", null);
+		}
+
+		public SubFeatureToggle  <#= subFeature.Name.Replace(" ", "_") #>(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("<#= subFeature.Name #>", jsonTogglerSection);
+        }
+
+<#
+}
+}
+#>
+	}
+}
+
+<#
+//Uncomment if you want to careate seperate cs files for each feature.
+//SaveOutput(featureName + ".cs");
+}
+
+#>
+
+<#+
+//  void SaveOutput(string outputFileName)
+//  {
+//      string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
+//      string outputFilePath = Path.Combine(templateDirectory, outputFileName);
+//      File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
+//
+//      this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+//  }
+#>

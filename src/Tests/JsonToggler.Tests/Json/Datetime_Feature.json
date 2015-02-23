@@ -1,0 +1,15 @@
+﻿{
+    "Name": "DateTime Feature",
+    "Environment": 3,
+    "Platform":  1,
+    "CommandType": 1,
+    "Command": "5/30/2000 04:30:00 AM",
+    "SubFeatureToggles": [
+        {
+            "Name": "SubFeature 1",
+            "EnabledEnvironments": 2,
+            "CommandType": null,
+            "Command": null
+        }
+    ]
+}

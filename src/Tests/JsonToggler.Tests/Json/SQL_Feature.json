@@ -1,0 +1,17 @@
+﻿{
+    "Environment": 3,
+    "Platform":  1,
+    "CommandType": 4,
+    "Command": "SELECT CAST(COUNT(1) AS BIT) as Result FROM [SomeTable] WHERE Id = '00000000-0000-0000-0000-000000000000'",
+    "ConnectionStringName":  "TestDatabase",
+    "SubFeatureToggles": [
+        {
+            "Name": "SubFeature 1",
+            "EnabledEnvironments": 2,
+            "CommandType": null,
+            "Command": null
+        }
+    ],
+    "SpecificEntities": [
+    ]
+}

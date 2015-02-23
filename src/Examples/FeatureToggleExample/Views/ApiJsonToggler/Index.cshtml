@@ -1,0 +1,89 @@
+﻿@model FeatureToggleExample.ViewModels.ApiJsonToggler.ApiJsonFeatureViewModel
+@{
+    ViewBag.Title = "JsonToggler API Feature Toggles";
+    var isBasicFeatureEnabled = Model.BasicFeature.IsEnabled();
+    var isFilterFeatureEnabled = Model.Filter_Feature.IsEnabled();
+    var isSqlFeatureEnabled = Model.SQL_Feature.IsEnabled();
+    var isDateFeatureEnabled = Model.DateFeature.IsEnabled();
+}
+
+<div class="jumbotron">
+    <h1>API Json Feature Toggle</h1>
+    <p class="lead">
+        This is an example of using feature toggles using JsonToggler library through an API.
+        This is the implementation using JsonToggler library and getting feature toggles through an API.
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>@Model.BasicFeature.Name</h2>
+
+        <sup>@isBasicFeatureEnabled</sup>
+
+
+        @if (isBasicFeatureEnabled)
+        {
+            <p>This feature is enabled!</p>
+        }
+        else
+        {
+            <p>This feature is disabled!</p>
+        }
+    </div>
+    <div class="col-md-3">
+        <h2>@Model.Filter_Feature.Name</h2>
+        <sup>@isFilterFeatureEnabled</sup>
+
+        @if (isFilterFeatureEnabled)
+        {
+            <p>The original and updated values should be the SAME because this feature is enabled.</p>
+        }
+        else
+        {
+            <p>The updated values should be FIILTERED because this feature is disabled.</p>
+        }
+
+        @if (Model.Filter_Feature.FilterValues != null)
+        {
+            <p>Items to filter: @string.Join(", ", Model.Filter_Feature.FilterValues)</p>
+        }
+        <h4>Original Values</h4>
+        @foreach (var val in Model.OriginalCollection)
+        {
+            <p>@val.ToString()</p>
+        }
+
+        <h4>Updated Values</h4>
+        @foreach (var val in Model.UpdatedCollection)
+        {
+            <p>@val.ToString()</p>
+        }
+    </div>
+    <div class="col-md-3">
+        <h2>@Model.SQL_Feature.Name</h2>
+        <sup>@isSqlFeatureEnabled</sup>
+
+        @if (isSqlFeatureEnabled)
+        {
+            <p>This feature is enabled!</p>
+        }
+        else
+        {
+            <p>This feature is disabled!</p>
+        }
+    </div>
+    <div class="col-md-3">
+        <h2>@Model.DateFeature.Name</h2>
+        <sup>@isDateFeatureEnabled - @Model.DateFeature.Command</sup>
+
+        @if (isDateFeatureEnabled)
+        {
+            <p>This feature is enabled!</p>
+        }
+        else
+        {
+            <p>This feature is disabled!</p>
+        }
+    </div>
+</div>
