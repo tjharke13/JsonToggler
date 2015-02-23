@@ -19,7 +19,7 @@ The FeatureToggleExample shows how you can consume the feature toggles using the
 
 #Steps to Setup
 
-1.  Add a config section for JsonToggler 
+Add a config section for JsonToggler 
 
 ```XML
     <configSections>
@@ -27,13 +27,13 @@ The FeatureToggleExample shows how you can consume the feature toggles using the
     </configSections>
 ```
 
-2. Create the configuration node for JsonToggler.
+Create the configuration node for JsonToggler.
 
 ```XML
     <JsonToggler Environment="Local" JsonDirectory="C:\DirectoryToJsonFiles\FeatureToggles"  />
 ```
 
-3. Create a JSON file for each individual feature.  e.g. MyFirstJsonTogglerFeature.json
+Create a JSON file for each individual feature.  e.g. MyFirstJsonTogglerFeature.json
 
 ```JSON
 {
@@ -60,13 +60,13 @@ The FeatureToggleExample shows how you can consume the feature toggles using the
 
 ```
 
-4.  Implement the feature in code to create a strongly typed class.  
+Implement the feature in code to create a strongly typed class.  
 	-This will be beneficial when removing features after they are no longer needed.
 	-To implement a feature is really simple.  All you will have to do is create a new feature and implement the JsonFeatureToggler<T> base class where T is the feature toggle implementation.
 
 For example
 
-```ASP
+```C#
 using JsonToggler;
 
 public class MyFirstJsonTogglerFeature : JsonFeatureToggler<MyFirstJsonTogglerFeature>
@@ -108,7 +108,7 @@ public ActionResult Index()
 
 4b.  If you want to avoid file IO by reading JSON files, or you are using an API to serve up your feature toggles you can do something like the following.
 
-```ASP
+```C#
 using JsonToggler;
 
 public class FeatureToggleService
@@ -154,7 +154,7 @@ Environment
 ---
 The environment this application is currently running in.  This will be used to determine if the feature is enabled for the application in it's current environment.
 
-```ASP
+```C#
 [System.Flags]
 public enum EnvironmentEnum
 {
@@ -171,7 +171,7 @@ Platform
 ---
 The platform type this application is.  (Web is the default value)  This will make it available to make some feature toggles only available for certain platforms.  This is useful if you have a lot of feature toggles, or you are using mobile data and want to constrain the amount of data that is sent to be specific to a certain platform.
 
-```ASP
+```C#
  [System.Flags]
 public enum PlatformEnum
 {
@@ -207,21 +207,24 @@ CommandType (Optional)
 ---
 This will give you the ability to define a custom type of feature toggle.  Environment/Platform conditions will have to be satisfied first to enable/disable a feature based upon the command type/command combination.
 
-Possible values
-```
-DateOnOrAfter = 1
+Possible values...
+
+**DateOnOrAfter (1)**
+
 //Will enable you to put a date/datetime value in the 'Command' property and will either enable/disable the feature if it is AFTER or on that date.  Dates should be in UTC time.  e.g. ("CommandType": 1 "Command": "5/30/2000")
 
-DateOnOrBefore = 2
+**DateOnOrBefore (2)**
+
 //Will enable you to put a date/datetime value in the 'Command' property and will either enable/disable the feature if it is BEFORE or on that date.  Dates should be in UTC time.  e.g. ("CommandType": 2, "Command": "5/30/2000")
 
-DatesBetween = 3
+**DatesBetween (3)**
+
 //Will enable you to put a date/datetime values in the 'Command' property and will either enable/disable the feature if it is BETWEEN the dates supplied.  Dates should be in UTC time and seperated by a pipe (|).  e.g. ("CommandType": 2, "Command": "5/30/2000 | 6/20/2000")
 
-SQL = 4
+**SQL (4)**
+
 //will enabled you to enable/disable a feature based upon a query to the database.  The query will have to return true/false to work correctly.  e.g. "CommandType": "SQL", "Command": "SELECT CAST(COUNT(1) AS BIT) as Result FROM [Company] WHERE Id = '00000000-0000-0000-0000-000000000000'"
 
-```
 
 ConnectionStringName (Optional)
 ---
