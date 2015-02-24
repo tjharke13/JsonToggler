@@ -61,8 +61,10 @@ Create a JSON file for each individual feature.  e.g. MyFirstJsonTogglerFeature.
 ```
 
 Implement the feature in code to create a strongly typed class.  
-	-This will be beneficial when removing features after they are no longer needed.
-	-To implement a feature is really simple.  All you will have to do is create a new feature and implement the JsonFeatureToggler<T> base class where T is the feature toggle implementation.
+
+-To implement a feature is really simple.  All you will have to do is create a new class and implement the JsonFeatureToggler<T> base class where T is the feature toggle implementation.
+
+-This will be beneficial when removing features after they are no longer needed.
 
 For example
 
@@ -106,7 +108,7 @@ public ActionResult Index()
 }
 ```
 
-4b.  If you want to avoid file IO by reading JSON files, or you are using an API to serve up your feature toggles you can do something like the following.
+If you want to avoid file IO by reading JSON files, or you are using an API to serve up your feature toggles you can do something like the following.  This enables you to get all features at one time and reuse the collection.
 
 ```C#
 using JsonToggler;
@@ -172,7 +174,7 @@ Platform
 The platform type this application is.  (Web is the default value)  This will make it available to make some feature toggles only available for certain platforms.  This is useful if you have a lot of feature toggles, or you are using mobile data and want to constrain the amount of data that is sent to be specific to a certain platform.
 
 ```C#
- [System.Flags]
+[System.Flags]
 public enum PlatformEnum
 {
     Web=1,
