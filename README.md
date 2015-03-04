@@ -37,6 +37,7 @@ Create a JSON file for each individual feature.  e.g. MyFirstJsonTogglerFeature.
 
 ```JSON
 {
+    "Application": "All",
     "Environment": "All",
     "Platform": "All", 
     "CommandType": null,
@@ -152,6 +153,11 @@ Properties use a bitwise enum to handle multiple values without the need to have
 These config values are used to determine if a feature toggle is enabled for the application and should be updated via config transforms when published to different environments.
 
 
+Applications
+---
+This is a list of applications you would like to support for this application.  This is a comma seperated list.  If not provided it will default to "All".  If set to "All" it will use all feature toggles.  If you say AppXYZ, only feature toggles for this application will be enabled.
+
+
 Environment
 ---
 The environment this application is currently running in.  This will be used to determine if the feature is enabled for the application in it's current environment.
@@ -192,6 +198,10 @@ public enum PlatformEnum
 Name (Optional)
 ---
 The feature name.  If this isn't supplied the files name is used as the feature name.  
+
+Application (Optional)
+---
+The application name this feature belongs to.  If you would like to make this feature specific for an application you can provide the application this feature belongs to.  It will only be enabled if the application consuming the feature toggle has "All", or the application name defined int he config.
 
 Environment (Required)
 ---
