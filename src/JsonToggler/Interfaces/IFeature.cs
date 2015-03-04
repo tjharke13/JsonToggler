@@ -7,6 +7,8 @@ namespace JsonToggler
     {
         string Name { get; set; }
 
+        string Application { get; set; }
+
         EnvironmentEnum Environment { get; set; }
 
         PlatformEnum Platform { get; set; }

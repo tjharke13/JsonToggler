@@ -32,6 +32,13 @@ namespace JsonToggler
             return section.IsTestMode;
         }
 
+        public static List<string> GetApplications()
+        {
+            var section = GetJsonSection();
+
+            return section.Applications.ToSplitList();
+        }
+
         public static string GetJsonFileDirectory()
         {
             var section = GetJsonSection();

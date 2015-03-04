@@ -12,27 +12,31 @@ namespace JsonToggler
     public class SubFeatureToggle : IFeature
     {
         public SubFeatureToggle()
-            : this(JsonConfigHelper.GetPlatform(), JsonConfigHelper.GetEnvironment(), JsonConfigHelper.GetIsTestMode())
+            : this(JsonConfigHelper.GetPlatform(), JsonConfigHelper.GetEnvironment(), JsonConfigHelper.GetIsTestMode(), JsonConfigHelper.GetApplications())
         { }
 
         public SubFeatureToggle(IJsonTogglerSection jsonTogglerSection)
-            : this(jsonTogglerSection.Platform, jsonTogglerSection.Environment, jsonTogglerSection.IsTestMode)
+            : this(jsonTogglerSection.Platform, jsonTogglerSection.Environment, jsonTogglerSection.IsTestMode, jsonTogglerSection.Applications.ToSplitList())
         { }
 
-        public SubFeatureToggle(PlatformEnum platform, EnvironmentEnum currentEnvironment, bool isTestMode)
+        public SubFeatureToggle(PlatformEnum platform, EnvironmentEnum currentEnvironment, bool isTestMode, List<string> applications)
         {
+            _applications = applications;
             _currentEnvironment = currentEnvironment;
             _currentPlatform = platform;
             _isTestMode = isTestMode;
             _togglerHelper = new JsonTogglerHelper();
         }
 
+        protected List<string> _applications { get; set; }
         protected EnvironmentEnum _currentEnvironment { get; set; }
         protected PlatformEnum _currentPlatform { get; set; }
         protected bool _isTestMode { get; set; }
         protected JsonTogglerHelper _togglerHelper { get; set; }
 
         public string Name { get; set; }
+
+        public string Application { get; set; }
 
         public EnvironmentEnum Environment { get; set; }
 
@@ -71,7 +75,7 @@ namespace JsonToggler
 
         public virtual bool IsEnabled(string companyId)
         {
-            return _togglerHelper.IsEnabled(this, _currentEnvironment, _currentPlatform, companyId, _isTestMode);
+            return _togglerHelper.IsEnabled(this, _currentEnvironment, _currentPlatform, companyId, _isTestMode, _applications);
         }
 
         /// <summary>

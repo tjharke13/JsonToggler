@@ -39,11 +39,23 @@ namespace JsonToggler
             set { this["Platform"] = value; }
         }
 
+        [ConfigurationProperty("Applications", IsRequired = false)]
+        public string Applications
+        {
+            get { return (string)this["Applications"]; }
+            set { this["Applications"] = value; }
+        }
+
         [ConfigurationProperty("IsTestMode", DefaultValue = false, IsRequired = false)]
         public bool IsTestMode
         {
             get { return (bool)this["IsTestMode"]; }
             set { this["IsTestMode"] = value; }
+        }
+
+        public List<string> ApplicationsList
+        {
+            get { return this.Applications.ToString().Split(',').Select(s => s.Trim()).ToList(); }
         }
     }
 }

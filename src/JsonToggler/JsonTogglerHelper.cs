@@ -16,13 +16,16 @@ namespace JsonToggler
         /// </summary>
         /// <param name="featureToggle"></param>
         /// <returns></returns>
-        public bool IsEnabled(IFeature featureToggle, EnvironmentEnum _currentEnvironment, PlatformEnum _currentPlatform, string specificEntityId, bool _isTestMode)
+        public bool IsEnabled(IFeature featureToggle, EnvironmentEnum currentEnvironment, PlatformEnum currentPlatform, string specificEntityId, bool isTestMode, List<string> applications)
         {
             //If in test mode we want to enable all features.
-            if (_isTestMode)
+            if (isTestMode)
                 return true;
 
             if (featureToggle == null)
+                return false;
+
+            if (!string.IsNullOrEmpty(featureToggle.Application) && featureToggle.Application.ToUpper() != "ALL" && applications.Where(w => w.ToUpper() == featureToggle.Application.ToUpper()).Count() == 0)
                 return false;
 
             var result = false;
@@ -36,7 +39,7 @@ namespace JsonToggler
             //    featureToggle = (FeatureToggle)subToggleFeature.FeatureToggle;
             //}
 
-            if (featureToggle.Environment.Has<EnvironmentEnum>(_currentEnvironment) && featureToggle.Platform.Has<PlatformEnum>(_currentPlatform))
+            if (featureToggle.Environment.Has<EnvironmentEnum>(currentEnvironment) && featureToggle.Platform.Has<PlatformEnum>(currentPlatform))
             {
                 if (string.IsNullOrEmpty(featureToggle.Command))
                     result = true;
@@ -190,16 +193,16 @@ namespace JsonToggler
         /// <param name="data"></param>
         /// <param name="columnName"></param>
         /// <param name="featureToggle"></param>
-        /// <param name="showOnlyItemsSpecified"></param>
+        /// <param name="filterItemsIfEnabled"></param>
         /// <returns>Filtered collection of T.</returns>
-        public virtual IEnumerable<T> FilterCollection<T, TFilterType>(IEnumerable<T> data, string columnName, IFeature featureToggle, bool isFeatureEnabled, bool showOnlyItemsSpecified = false)
+        public virtual IEnumerable<T> FilterCollection<T, TFilterType>(IEnumerable<T> data, string columnName, IFeature featureToggle, bool isFeatureEnabled, bool filterItemsIfEnabled = false)
         {
             if (featureToggle.FilterValues != null && featureToggle.FilterValues.Count > 0)
             {
                 var enabledEnvironments = (EnvironmentEnum)featureToggle.Environment;
                 var itemsToFilter = featureToggle.FilterValues;
 
-                if (!showOnlyItemsSpecified && !isFeatureEnabled)
+                if ((!filterItemsIfEnabled && !isFeatureEnabled) || (filterItemsIfEnabled && isFeatureEnabled))
                 {
                     if (string.IsNullOrEmpty(columnName))
                     {
@@ -207,33 +210,28 @@ namespace JsonToggler
                     }
                     else
                     {
-                        //Because this feature isn't enabled yet we want to remove the rows that are being added with this feature.
-                        //Get list of Rows to Remove
-                        var filterList = GetFilterList<TFilterType>(itemsToFilter, columnName, OperationEnum.NotEquals);
+                        OperationEnum operationType;
+
+                        if (filterItemsIfEnabled)
+                        {
+                            //Because this feature is enabled and the filterItemsIfEnabled is true we will filter the values that 
+                            //are supplied via the feature.
+                            operationType = OperationEnum.Equals;
+                        }
+                        else
+                        {
+                            //Because this feature isn't enabled yet we want to remove the rows that are being added with this feature.
+                            //These values are supplied via FilterValues.
+                            operationType = OperationEnum.NotEquals;
+                        }
+
+                        var filterList = GetFilterList<TFilterType>(itemsToFilter, columnName, operationType);
 
                         var expr = ExpressionBuilder.GetExpression<T>(filterList).Compile();
 
                         data = data.Where(expr);
                     }
 
-                }
-                else if (showOnlyItemsSpecified && isFeatureEnabled)
-                {
-                    if (string.IsNullOrEmpty(columnName))
-                    {
-                        data = data.Where(w => itemsToFilter.Contains(w.ToString()));
-                    }
-                    else
-                    {
-                        //Because this is a reverseFilter we aren't removing rows, but only showing specific ones that are defined in the feature.
-                        //The feature must be enabled to show only these certain items.
-                        //Get list of Rows to Remove
-                        var filterList = GetFilterList<TFilterType>(itemsToFilter, columnName, OperationEnum.Equals);
-
-                        var expr = ExpressionBuilder.GetExpression<T>(filterList).Compile();
-
-                        data = data.Where(expr);
-                    }
                 }
             }
 

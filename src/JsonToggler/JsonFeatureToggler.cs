@@ -19,14 +19,14 @@ namespace JsonToggler
         { }
 
         public JsonFeatureToggler(IJsonTogglerSection jsonTogglerSection)
-            : this(jsonTogglerSection.Platform, jsonTogglerSection.Environment, jsonTogglerSection.IsTestMode)
+            : this(jsonTogglerSection.Platform, jsonTogglerSection.Environment, jsonTogglerSection.IsTestMode, jsonTogglerSection.Applications.ToSplitList())
         { }
 
         public JsonFeatureToggler(PlatformEnum platform)
-            : this(platform, JsonConfigHelper.GetEnvironment(), JsonConfigHelper.GetIsTestMode())
+            : this(platform, JsonConfigHelper.GetEnvironment(), JsonConfigHelper.GetIsTestMode(), JsonConfigHelper.GetApplications())
         { }
 
-        public JsonFeatureToggler(PlatformEnum platform, EnvironmentEnum currentEnvironment, bool isTestMode) : base(platform, currentEnvironment, isTestMode)
+        public JsonFeatureToggler(PlatformEnum platform, EnvironmentEnum currentEnvironment, bool isTestMode, List<string> applications) : base(platform, currentEnvironment, isTestMode, applications)
         {
             _featureName = typeof(TFeature).Name;
 
@@ -48,6 +48,7 @@ namespace JsonToggler
             var feature = reader.GetFeatureToggleFromJson(_featureName);
 
             this.Name = feature.Name;
+            this.Application = feature.Application;
             this.Environment = feature.Environment;
             this.Platform = feature.Platform;
             this.Command = feature.Command;

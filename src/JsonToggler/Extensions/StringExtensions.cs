@@ -9,6 +9,11 @@ namespace JsonToggler
 {
     public static class StringExtensions
     {
+        public static List<string> ToSplitList(this string value, char splitCharacter = ',')
+        {
+            return value.Split(splitCharacter).Select(s => s.Trim()).ToList();
+        }
+
         public static string ToFeatureName(this string value)
         {
             return value.Replace(" ", "_");

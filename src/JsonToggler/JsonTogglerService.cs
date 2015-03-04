@@ -88,6 +88,32 @@ namespace JsonToggler
             return result;
         }
 
+        /// <summary>
+        /// Get all Feature Toggles for the provided platform.  
+        /// This should be called for the specific application.
+        /// </summary>
+        /// <param name="platform">PlatformEnum e.g. Web, Android, iOS, etc..</param>
+        /// <returns>A collection of FeatureToggles for the platform.</returns>
+        public List<FeatureToggle> GetAllFeatureTogglesForPlatformAndApplication(PlatformEnum platform, string application)
+        {
+            var jsonFiles = GetJsonFiles();
+
+            var result = new List<FeatureToggle>();
+            foreach (var jsonFile in jsonFiles)
+            {
+                var featureToggle = GetFeatureToggleFromJson(jsonFile);
+
+                if ((application.ToUpper() == "ALL" || featureToggle.Application == application) &&
+                    platform.Has<PlatformEnum>(featureToggle.Platform) ||
+                    featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform)).Count() > 0)
+                {
+                    result.Add(featureToggle);
+                }
+            }
+
+            return result;
+        }
+
         public List<FeatureToggle> GetAllFeatureTogglesForPlatformAndEnvironment(PlatformEnum platform, EnvironmentEnum environment)
         {
             var jsonFiles = GetJsonFiles();
@@ -97,8 +123,12 @@ namespace JsonToggler
             {
                 var featureToggle = GetFeatureToggleFromJson(jsonFile);
 
-                if (platform.Has<PlatformEnum>(featureToggle.Platform) && environment.Has<EnvironmentEnum>(featureToggle.Environment) || featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform) && environment.Has<EnvironmentEnum>(w.Environment)).Count() > 0)
+                if (platform.Has<PlatformEnum>(featureToggle.Platform) &&
+                    (environment.Has<EnvironmentEnum>(featureToggle.Environment) ||
+                    featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform) && environment.Has<EnvironmentEnum>(w.Environment)).Count() > 0))
+                {
                     result.Add(featureToggle);
+                }
             }
 
             return result;

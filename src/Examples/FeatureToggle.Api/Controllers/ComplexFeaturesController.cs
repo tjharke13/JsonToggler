@@ -23,14 +23,14 @@ namespace FeatureToggle.API.Controllers
         private JsonTogglerService _jsonTogglerService { get; set; }
 
         [HttpGet]
-        public HttpResponseMessage Get(PlatformEnum platform)
+        public HttpResponseMessage Get(PlatformEnum platform, string application = "ALL")
         {
             log.DebugFormat("GetAllForPlatform: {0}", platform.ToString());
 
             HttpResponseMessage response;
             try
             {
-                var features = _jsonTogglerService.GetAllFeatureTogglesForPlatform(platform);
+                var features = _jsonTogglerService.GetAllFeatureTogglesForPlatformAndApplication(platform, application);
 
                 response = Request.CreateResponse(HttpStatusCode.OK, features);
             }

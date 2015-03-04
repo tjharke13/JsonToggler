@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 
@@ -11,5 +12,6 @@ namespace JsonToggler
         bool IsTestMode { get; set; }
         string JsonDirectory { get; set; }
         PlatformEnum Platform { get; set; }
+        string Applications { get; set; }
     }
 }

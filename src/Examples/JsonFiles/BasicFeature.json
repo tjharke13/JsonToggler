@@ -1,5 +1,6 @@
 ﻿{
-    "Environment": 1,
+    "Environment": 3,
+    "Application":  "All",
     "Platform":  1,
     "CommandType": null,
     "Command": null,

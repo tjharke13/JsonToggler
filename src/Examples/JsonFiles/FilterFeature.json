@@ -1,6 +1,6 @@
 ﻿{
     "Name": "Filter Feature",
-    "Environment": 1,
+    "Environment": 2,
     "Platform":  1,
     "FilterValues": [
         "00000000-0000-0000-0000-000000000001",

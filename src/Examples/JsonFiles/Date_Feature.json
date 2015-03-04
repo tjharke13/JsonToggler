@@ -1,9 +1,10 @@
 ﻿{
     "Name": "Date Feature",
+    "Application":  "TestApp",
     "Environment": 3,
     "Platform":  1,
-    "CommandType": "DateOnOrAfter",
-    "Command": "5/30/2000",
+    "CommandType": "DateOnOrBefore",
+    "Command": "5/30/2014",
     "SubFeatureToggles": [
         {
             "Name": "SubFeature 1",

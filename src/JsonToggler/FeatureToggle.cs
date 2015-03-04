@@ -16,27 +16,31 @@ namespace JsonToggler
     public class FeatureToggle : IFeatureToggle
     {
         public FeatureToggle()
-            : this(JsonConfigHelper.GetPlatform(), JsonConfigHelper.GetEnvironment(), JsonConfigHelper.GetIsTestMode())
+            : this(JsonConfigHelper.GetPlatform(), JsonConfigHelper.GetEnvironment(), JsonConfigHelper.GetIsTestMode(), JsonConfigHelper.GetApplications())
         { }
 
         public FeatureToggle(IJsonTogglerSection jsonTogglerSection)
-            : this(jsonTogglerSection.Platform, jsonTogglerSection.Environment, jsonTogglerSection.IsTestMode)
+            : this(jsonTogglerSection.Platform, jsonTogglerSection.Environment, jsonTogglerSection.IsTestMode, jsonTogglerSection.Applications.ToSplitList())
         { }
 
-        public FeatureToggle(PlatformEnum platform, EnvironmentEnum currentEnvironment, bool isTestMode)
+        public FeatureToggle(PlatformEnum platform, EnvironmentEnum currentEnvironment, bool isTestMode, List<string> applications)
         {
+            _applications = applications;
             _currentEnvironment = currentEnvironment;
             _currentPlatform = platform;
             _isTestMode = isTestMode;
             _togglerHelper = new JsonTogglerHelper();
         }
 
+        protected List<string> _applications { get; set; }
         protected EnvironmentEnum _currentEnvironment { get; set; }
         protected PlatformEnum _currentPlatform { get; set; }
         protected bool _isTestMode { get; set; }
         protected JsonTogglerHelper _togglerHelper { get; set; }
 
         public string Name { get; set; }
+
+        public string Application { get; set; }
 
         public EnvironmentEnum Environment { get; set; }
 
@@ -77,7 +81,7 @@ namespace JsonToggler
             if(_currentEnvironment == 0)
                 _currentEnvironment = JsonConfigHelper.GetEnvironment();
 
-            return _togglerHelper.IsEnabled(this, _currentEnvironment, _currentPlatform, specificEntityId, _isTestMode);
+            return _togglerHelper.IsEnabled(this, _currentEnvironment, _currentPlatform, specificEntityId, _isTestMode, _applications);
         }
 
         /// <summary>
@@ -97,11 +101,11 @@ namespace JsonToggler
         /// <param name="data"></param>
         /// <param name="columnName"></param>
         /// <param name="featureToggle"></param>
-        /// <param name="showOnlyItemsSpecified"></param>
+        /// <param name="filterItemsIfEnabled"></param>
         /// <returns>Filtered collection of T.</returns>
-        public virtual IEnumerable<T> FilterCollection<T, TFilterType>(IEnumerable<T> data, string columnName, bool showOnlyItemsSpecified = false)
+        public virtual IEnumerable<T> FilterCollection<T, TFilterType>(IEnumerable<T> data, string columnName, bool filterItemsIfEnabled = false)
         {
-            return _togglerHelper.FilterCollection<T, TFilterType>(data, columnName, this, this.IsEnabled(), showOnlyItemsSpecified);
+            return _togglerHelper.FilterCollection<T, TFilterType>(data, columnName, this, this.IsEnabled(), filterItemsIfEnabled);
         }
 
         public SubFeatureToggle GetSubFeature(IJsonTogglerSection jsonTogglerSection=null)
