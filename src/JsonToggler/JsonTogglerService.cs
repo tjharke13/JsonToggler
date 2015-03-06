@@ -81,8 +81,12 @@ namespace JsonToggler
             {
                 var featureToggle = GetFeatureToggleFromJson(jsonFile);
 
-                if (platform.Has<PlatformEnum>(featureToggle.Platform) || featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform)).Count() > 0)
+                if (platform.Has<PlatformEnum>(featureToggle.Platform) ||
+                    (featureToggle.SubFeatureToggles != null &&
+                        featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform)).Count() > 0))
+                {
                     result.Add(featureToggle);
+                }
             }
 
             return result;
@@ -105,7 +109,8 @@ namespace JsonToggler
 
                 if ((application.ToUpper() == "ALL" || string.IsNullOrEmpty(featureToggle.Application) || featureToggle.Application.ToUpper() == "ALL" || featureToggle.Application.ToUpper() == application.ToUpper()) &&
                     (platform.Has<PlatformEnum>(featureToggle.Platform) ||
-                    featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform)).Count() > 0))
+                    (featureToggle.SubFeatureToggles != null &&
+                        featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform)).Count() > 0)))
                 {
                     result.Add(featureToggle);
                 }
@@ -125,7 +130,8 @@ namespace JsonToggler
 
                 if (platform.Has<PlatformEnum>(featureToggle.Platform) &&
                     (environment.Has<EnvironmentEnum>(featureToggle.Environment) ||
-                    featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform) && environment.Has<EnvironmentEnum>(w.Environment)).Count() > 0))
+                    (featureToggle.SubFeatureToggles != null &&
+                        featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform) && environment.Has<EnvironmentEnum>(w.Environment)).Count() > 0)))
                 {
                     result.Add(featureToggle);
                 }
