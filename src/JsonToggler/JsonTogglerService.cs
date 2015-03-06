@@ -103,7 +103,7 @@ namespace JsonToggler
             {
                 var featureToggle = GetFeatureToggleFromJson(jsonFile);
 
-                if ((application.ToUpper() == "ALL" || string.IsNullOrEmpty(featureToggle.Application) || featureToggle.Application.ToUpper() == "ALL" || featureToggle.Application == application) &&
+                if ((application.ToUpper() == "ALL" || string.IsNullOrEmpty(featureToggle.Application) || featureToggle.Application.ToUpper() == "ALL" || featureToggle.Application.ToUpper() == application.ToUpper()) &&
                     (platform.Has<PlatformEnum>(featureToggle.Platform) ||
                     featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform)).Count() > 0))
                 {
