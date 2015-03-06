@@ -1,0 +1,7 @@
+﻿{
+    "Name": "Date Feature",
+    "Environment": 3,
+    "Platform":  1,
+    "CommandType": "Date",
+    "Command": "5/30/2000"
+}

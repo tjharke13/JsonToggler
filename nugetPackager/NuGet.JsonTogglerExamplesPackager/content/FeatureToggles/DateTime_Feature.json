@@ -1,0 +1,7 @@
+﻿{
+    "Name": "DateTime Feature",
+    "Environment": 3,
+    "Platform":  1,
+    "CommandType": "Date",
+    "Command": "5/30/2000 04:30:00 AM"
+}

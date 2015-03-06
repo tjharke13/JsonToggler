@@ -1,0 +1,31 @@
+﻿{
+    "Name": "My First Feature",
+    "Environment": 31,
+    "Platform": 31, 
+    "CommandType": null,
+    "Command": null,
+    "ConnectionString": null,
+    "FilterValues":  null,
+    "SubFeatureToggles": [
+        {
+            "Name": "Sub Feature 1",
+            "Environment": 31,
+            "Platform": 31,
+            "CommandType": null,
+            "Command": null,
+            "ConnectionString": null,
+            "FilterValues":  null
+        },
+        {
+            "Name": "Sub Feature 2",
+            "Environment": 7, 
+            "Platform": 3,
+            "CommandType": null,
+            "Command": null,
+            "ConnectionString": null,
+            "FilterValues":  null
+        }
+    ],
+    "SpecificEntities": [
+    ]
+}

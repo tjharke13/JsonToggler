@@ -78,7 +78,7 @@
     <Compile Include="Helpers\TestFilterData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\JsonToggler\JsonToggler.csproj">
+    <ProjectReference Include="..\..\src\JsonToggler\JsonToggler.csproj">
       <Project>{6f8aa082-6233-42fc-81f1-ec82e6ab51c9}</Project>
       <Name>JsonToggler</Name>
     </ProjectReference>

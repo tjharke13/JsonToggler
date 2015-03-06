@@ -1,0 +1,8 @@
+﻿{
+    "Name": "SQL Feature",
+    "Environment": 3,
+    "Platform":  1,
+    "CommandType": "SQL",
+    "Command": "SELECT CAST(COUNT(1) AS BIT) as Result FROM [TestTable] WHERE Id = '00000000-0000-0000-0000-000000000000'",
+    "ConnectionStringName":  "AppDataContext"
+}

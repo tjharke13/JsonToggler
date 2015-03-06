@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  
+    <configSections xdt:Transform="InsertIfMissing">
+        <section name="JsonToggler" type="JsonToggler.JsonTogglerSection, JsonToggler" />
+    </configSections>
+
+    <configSections>
+      <section name="JsonToggler" type="JsonToggler.JsonTogglerSection, JsonToggler" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" />
+    </configSections>
+
+    <JsonToggler Environment="Local" JsonDirectory="$FullPath$FeatureToggles" xdt:Transform="InsertIfMissing" />
+  
+</configuration>

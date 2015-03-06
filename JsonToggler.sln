@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonToggler", "src\JsonToggler\JsonToggler.csproj", "{6F8AA082-6233-42FC-81F1-EC82E6AB51C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonToggler.Tests", "src\Tests\JsonToggler.Tests\JsonToggler.Tests.csproj", "{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{85351F72-AC1E-4587-971E-3774B0BA891F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{217AC244-BD46-4461-B31E-634DD97A11B2}"
@@ -40,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JsonFiles", "JsonFiles", "{
 		examples\JsonFiles\SQL_Feature.json = examples\JsonFiles\SQL_Feature.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonToggler.Tests", "tests\JsonToggler.Tests\JsonToggler.Tests.csproj", "{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,16 +59,6 @@ Global
 		{6F8AA082-6233-42FC-81F1-EC82E6AB51C9}.Release 4.5|Any CPU.Build.0 = Release 4.5|Any CPU
 		{6F8AA082-6233-42FC-81F1-EC82E6AB51C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F8AA082-6233-42FC-81F1-EC82E6AB51C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 4.5|Any CPU.ActiveCfg = Release|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}.Release 3.5|Any CPU.ActiveCfg = Release 3.5|Any CPU
@@ -99,14 +89,24 @@ Global
 		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
 		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 4.5|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2} = {85351F72-AC1E-4587-971E-3774B0BA891F}
 		{42280AEB-7116-40CA-8E86-B338AB27CDA9} = {217AC244-BD46-4461-B31E-634DD97A11B2}
 		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4} = {217AC244-BD46-4461-B31E-634DD97A11B2}
 		{71E5E045-275B-4F23-B94F-9B8FF23EA75D} = {217AC244-BD46-4461-B31E-634DD97A11B2}
+		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2} = {85351F72-AC1E-4587-971E-3774B0BA891F}
 	EndGlobalSection
 EndGlobal

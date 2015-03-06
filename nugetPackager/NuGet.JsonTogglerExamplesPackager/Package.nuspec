@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>JsonTogglerExamples</id>
+    <version>0.0.1</version>
+    <title>JsonToggler Examples</title>
+    <authors>Tommy Harke</authors>
+    <owners></owners>
+    <description>
+      This will enable a feature toggle implementation using JSON files.  This can be used on top of an API that stores all feature toggles, or directly into a project. Includes examples
+    </description>
+    <releaseNotes>
+    </releaseNotes>
+    <summary>
+      This will enable a feature toggle implementation using JSON files.
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://nuget.org/packages/JsonToggler</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <copyright>Copyright  2015</copyright>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="4.5.1" />
+      <dependency id="JsonToggler" version="0.0.2" />
+    </dependencies>
+    <references></references>
+    <tags>feature toggles, feature flippers, feature switches</tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="tools\" target="tools" />
+    <file src="content\" target="content" />
+  </files>
+</package>
