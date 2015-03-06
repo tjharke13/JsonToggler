@@ -25,7 +25,7 @@ namespace JsonToggler
             if (featureToggle == null)
                 return false;
 
-            if (!string.IsNullOrEmpty(featureToggle.Application) && featureToggle.Application.ToUpper() != "ALL" && applications.Where(w => w.ToUpper() == featureToggle.Application.ToUpper()).Count() == 0)
+            if (!string.IsNullOrEmpty(featureToggle.Application) && featureToggle.Application.ToUpper() != "ALL" && applications.Where(w => w.ToUpper() == featureToggle.Application.ToUpper() || w.ToUpper() == "ALL").Count() == 0)
                 return false;
 
             var result = false;

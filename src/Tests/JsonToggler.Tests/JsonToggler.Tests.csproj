@@ -64,6 +64,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FeatureToggles.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tests\ApplicationAllFeatureTests.cs" />
+    <Compile Include="Tests\ApplicationFeatureTests.cs" />
     <Compile Include="Tests\EntitySpecificTests.cs" />
     <Compile Include="Tests\FilterFeatureTest.cs" />
     <Compile Include="Helpers\BaseTestHelper.cs" />
@@ -83,6 +85,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Json\ApplicationAllFeature.json" />
+    <None Include="Json\ApplicationFeature.json" />
     <None Include="Json\BasicFeature.json" />
     <None Include="Json\Datetime_Feature.json" />
     <None Include="Json\Date_Feature.json" />

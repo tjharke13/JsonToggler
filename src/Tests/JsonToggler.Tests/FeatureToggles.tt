@@ -35,7 +35,7 @@ using System.Reflection;
 using JsonToggler;
 
 <#
-var _jsonDirectory = "C:\\Users\\tjh5315\\Source\\Repos\\Sandbox\\JsonToggler\\src\\Tests\\JsonToggler.Tests\\Json";
+var _jsonDirectory = "C:\\devgithub\\jsontogglerTFS\\src\\Tests\\JsonToggler.Tests\\Json";
 var jsonTogglerService = new JsonTogglerService(_jsonDirectory);
 var featureToggles = jsonTogglerService.GetAllFeatureToggles();
 

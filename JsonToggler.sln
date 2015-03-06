@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{85351F72
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{217AC244-BD46-4461-B31E-634DD97A11B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureToggleExample", "src\Examples\FeatureToggleExample\FeatureToggleExample.csproj", "{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E5540304-2BE2-40E1-AE23-AE317E8BD9F5}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -20,24 +18,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E55403
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JsonFiles", "JsonFiles", "{5E6A07F7-0639-409C-8C59-CE3EC7E3740E}"
-	ProjectSection(SolutionItems) = preProject
-		src\Examples\JsonFiles\BasicFeature.json = src\Examples\JsonFiles\BasicFeature.json
-		src\Examples\JsonFiles\Date_Feature.json = src\Examples\JsonFiles\Date_Feature.json
-		src\Examples\JsonFiles\DateTime_Feature.json = src\Examples\JsonFiles\DateTime_Feature.json
-		src\Examples\JsonFiles\EntitySpecificFeature.json = src\Examples\JsonFiles\EntitySpecificFeature.json
-		src\Examples\JsonFiles\FilterFeature.json = src\Examples\JsonFiles\FilterFeature.json
-		src\Examples\JsonFiles\SQL_Feature.json = src\Examples\JsonFiles\SQL_Feature.json
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureToggle.API", "src\Examples\FeatureToggle.Api\FeatureToggle.API.csproj", "{42280AEB-7116-40CA-8E86-B338AB27CDA9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonToggler.Api", "src\JsonToggler.Api\JsonToggler.Api.csproj", "{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34529ED8-1A02-4DAC-ABF6-270E029ACB13}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureToggle.API", "examples\FeatureToggle.Api\FeatureToggle.API.csproj", "{42280AEB-7116-40CA-8E86-B338AB27CDA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureToggleExample", "examples\FeatureToggleExample\FeatureToggleExample.csproj", "{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JsonFiles", "JsonFiles", "{71E5E045-275B-4F23-B94F-9B8FF23EA75D}"
+	ProjectSection(SolutionItems) = preProject
+		examples\JsonFiles\BasicFeature.json = examples\JsonFiles\BasicFeature.json
+		examples\JsonFiles\Date_Feature.json = examples\JsonFiles\Date_Feature.json
+		examples\JsonFiles\DateTime_Feature.json = examples\JsonFiles\DateTime_Feature.json
+		examples\JsonFiles\EntitySpecificFeature.json = examples\JsonFiles\EntitySpecificFeature.json
+		examples\JsonFiles\FilterFeature.json = examples\JsonFiles\FilterFeature.json
+		examples\JsonFiles\SQL_Feature.json = examples\JsonFiles\SQL_Feature.json
 	EndProjectSection
 EndProject
 Global
@@ -69,26 +69,6 @@ Global
 		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
 		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 4.5|Any CPU.ActiveCfg = Release|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 4.5|Any CPU.ActiveCfg = Release|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}.Release 3.5|Any CPU.ActiveCfg = Release 3.5|Any CPU
@@ -99,14 +79,34 @@ Global
 		{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}.Release 4.5|Any CPU.Build.0 = Release 4.5|Any CPU
 		{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D83CC12-84EB-4B9E-8AEA-093B15B6E6C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 4.5|Any CPU.ActiveCfg = Release|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42280AEB-7116-40CA-8E86-B338AB27CDA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 4.5|Any CPU.ActiveCfg = Release|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BAA249D0-74A4-4AD0-9128-3E61D9A6DAD2} = {85351F72-AC1E-4587-971E-3774B0BA891F}
-		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4} = {217AC244-BD46-4461-B31E-634DD97A11B2}
-		{5E6A07F7-0639-409C-8C59-CE3EC7E3740E} = {217AC244-BD46-4461-B31E-634DD97A11B2}
 		{42280AEB-7116-40CA-8E86-B338AB27CDA9} = {217AC244-BD46-4461-B31E-634DD97A11B2}
+		{DC2C8A40-E6F0-40DE-AA4F-235FE8B4F6D4} = {217AC244-BD46-4461-B31E-634DD97A11B2}
+		{71E5E045-275B-4F23-B94F-9B8FF23EA75D} = {217AC244-BD46-4461-B31E-634DD97A11B2}
 	EndGlobalSection
 EndGlobal

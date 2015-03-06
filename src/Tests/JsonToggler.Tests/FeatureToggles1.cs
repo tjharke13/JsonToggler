@@ -6,6 +6,180 @@ using JsonToggler;
 
 namespace JsonToggler.Tests.FeatureToggles
 {
+	public partial class ApplicationAllFeature : JsonFeatureToggler<ApplicationAllFeature>
+	{
+		public ApplicationAllFeature()
+        { }
+
+		public ApplicationAllFeature(IJsonTogglerSection jsonTogglerSection) : base(jsonTogglerSection)
+        { }
+
+		public virtual SubFeatureToggle SubFeature_1()
+		{
+			return base.GetSubFeature("SubFeature 1", null);
+		}
+
+		public SubFeatureToggle  SubFeature_1(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 1", jsonTogglerSection);
+        }
+
+		public virtual SubFeatureToggle SubFeature_2()
+		{
+			return base.GetSubFeature("SubFeature 2", null);
+		}
+
+		public SubFeatureToggle  SubFeature_2(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 2", jsonTogglerSection);
+        }
+
+		public virtual SubFeatureToggle SubFeature_3()
+		{
+			return base.GetSubFeature("SubFeature 3", null);
+		}
+
+		public SubFeatureToggle  SubFeature_3(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 3", jsonTogglerSection);
+        }
+
+	}
+}
+
+namespace JsonToggler.Tests.ApiFeatureToggles
+{
+
+	public partial class ApplicationAllFeature  : FeatureToggle
+	{
+		public ApplicationAllFeature()
+        { }
+
+		public ApplicationAllFeature(IJsonTogglerSection jsonTogglerSection) : base(jsonTogglerSection)
+        { }
+
+		public virtual SubFeatureToggle SubFeature_1()
+		{
+			return base.GetSubFeature("SubFeature 1", null);
+		}
+
+		public SubFeatureToggle  SubFeature_1(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 1", jsonTogglerSection);
+        }
+
+		public virtual SubFeatureToggle SubFeature_2()
+		{
+			return base.GetSubFeature("SubFeature 2", null);
+		}
+
+		public SubFeatureToggle  SubFeature_2(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 2", jsonTogglerSection);
+        }
+
+		public virtual SubFeatureToggle SubFeature_3()
+		{
+			return base.GetSubFeature("SubFeature 3", null);
+		}
+
+		public SubFeatureToggle  SubFeature_3(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 3", jsonTogglerSection);
+        }
+
+	}
+}
+
+namespace JsonToggler.Tests.FeatureToggles
+{
+	public partial class ApplicationFeature : JsonFeatureToggler<ApplicationFeature>
+	{
+		public ApplicationFeature()
+        { }
+
+		public ApplicationFeature(IJsonTogglerSection jsonTogglerSection) : base(jsonTogglerSection)
+        { }
+
+		public virtual SubFeatureToggle SubFeature_1()
+		{
+			return base.GetSubFeature("SubFeature 1", null);
+		}
+
+		public SubFeatureToggle  SubFeature_1(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 1", jsonTogglerSection);
+        }
+
+		public virtual SubFeatureToggle SubFeature_2()
+		{
+			return base.GetSubFeature("SubFeature 2", null);
+		}
+
+		public SubFeatureToggle  SubFeature_2(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 2", jsonTogglerSection);
+        }
+
+		public virtual SubFeatureToggle SubFeature_3()
+		{
+			return base.GetSubFeature("SubFeature 3", null);
+		}
+
+		public SubFeatureToggle  SubFeature_3(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 3", jsonTogglerSection);
+        }
+
+	}
+}
+
+namespace JsonToggler.Tests.ApiFeatureToggles
+{
+
+	public partial class ApplicationFeature  : FeatureToggle
+	{
+		public ApplicationFeature()
+        { }
+
+		public ApplicationFeature(IJsonTogglerSection jsonTogglerSection) : base(jsonTogglerSection)
+        { }
+
+		public virtual SubFeatureToggle SubFeature_1()
+		{
+			return base.GetSubFeature("SubFeature 1", null);
+		}
+
+		public SubFeatureToggle  SubFeature_1(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 1", jsonTogglerSection);
+        }
+
+		public virtual SubFeatureToggle SubFeature_2()
+		{
+			return base.GetSubFeature("SubFeature 2", null);
+		}
+
+		public SubFeatureToggle  SubFeature_2(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 2", jsonTogglerSection);
+        }
+
+		public virtual SubFeatureToggle SubFeature_3()
+		{
+			return base.GetSubFeature("SubFeature 3", null);
+		}
+
+		public SubFeatureToggle  SubFeature_3(IJsonTogglerSection jsonTogglerSection)
+        {
+            return base.GetSubFeature("SubFeature 3", jsonTogglerSection);
+        }
+
+	}
+}
+
+namespace JsonToggler.Tests.FeatureToggles
+{
 	public partial class BasicFeature : JsonFeatureToggler<BasicFeature>
 	{
 		public BasicFeature()
