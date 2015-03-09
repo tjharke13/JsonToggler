@@ -16,8 +16,10 @@ namespace JsonToggler
         DEV=2,
         QAS=4,
         STAGE=8,
-        PROD=16,
+        BETA=16,
+        PILOT=32,
+        PROD=64,
         NONPROD= LOCAL | DEV | QAS | STAGE,
-        ALL= LOCAL | DEV | QAS | STAGE | PROD
+        ALL= LOCAL | DEV | QAS | STAGE | BETA | PILOT | PROD
     }
 }

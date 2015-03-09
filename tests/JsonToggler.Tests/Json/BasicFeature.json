@@ -6,7 +6,7 @@
     "SubFeatureToggles": [
         {
             "Name": "SubFeature 1",
-            "Environment": 31,
+            "Environment": "All",
             "Platform":  1,
             "CommandType": null,
             "Command": null
@@ -20,7 +20,7 @@
         },
         {
             "Name": "SubFeature 3",
-            "Environment": 16,
+            "Environment": 64,
             "Platform":  8,
             "CommandType": null,
             "Command": null

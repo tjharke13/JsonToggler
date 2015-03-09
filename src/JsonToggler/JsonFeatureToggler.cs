@@ -26,6 +26,10 @@ namespace JsonToggler
             : this(platform, JsonConfigHelper.GetEnvironment(), JsonConfigHelper.GetIsTestMode(), JsonConfigHelper.GetApplications())
         { }
 
+        public JsonFeatureToggler(PlatformEnum platform, EnvironmentEnum environment)
+            : this(platform, environment, JsonConfigHelper.GetIsTestMode(), JsonConfigHelper.GetApplications())
+        { }
+
         public JsonFeatureToggler(PlatformEnum platform, EnvironmentEnum currentEnvironment, bool isTestMode, List<string> applications) : base(platform, currentEnvironment, isTestMode, applications)
         {
             _featureName = typeof(TFeature).Name;

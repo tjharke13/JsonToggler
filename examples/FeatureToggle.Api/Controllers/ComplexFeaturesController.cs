@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace FeatureToggle.API.Controllers
 {
-    public class ComplexFeaturesController : ApiController
+    public class ComplexFeaturesController : BaseApiController
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -23,13 +23,21 @@ namespace FeatureToggle.API.Controllers
         private JsonTogglerService _jsonTogglerService { get; set; }
 
         [HttpGet]
-        public HttpResponseMessage Get(PlatformEnum platform, string application = "ALL")
+        public HttpResponseMessage Get(EnvironmentEnum environment, PlatformEnum platform, string application = "ALL")
         {
             log.DebugFormat("GetAllForPlatform: {0}", platform.ToString());
 
             HttpResponseMessage response;
             try
             {
+                var propertyErrors = VerifyProperties(platform, environment);
+
+                if (propertyErrors.Errors.Count > 0)
+                {
+                    response = Request.CreateResponse(HttpStatusCode.BadRequest, propertyErrors);
+                    return response;
+                }
+
                 var features = _jsonTogglerService.GetAllFeatureTogglesForPlatformAndApplication(platform, application);
 
                 response = Request.CreateResponse(HttpStatusCode.OK, features);

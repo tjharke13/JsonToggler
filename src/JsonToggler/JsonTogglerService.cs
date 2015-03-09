@@ -140,6 +140,28 @@ namespace JsonToggler
             return result;
         }
 
+        public List<FeatureToggle> GetAllFeatureToggles(PlatformEnum platform, EnvironmentEnum environment, string application)
+        {
+            var jsonFiles = GetJsonFiles();
+
+            var result = new List<FeatureToggle>();
+            foreach (var jsonFile in jsonFiles)
+            {
+                var featureToggle = GetFeatureToggleFromJson(jsonFile);
+
+                if ((application.ToUpper() == "ALL" || string.IsNullOrEmpty(featureToggle.Application) || featureToggle.Application.ToUpper() == "ALL" || featureToggle.Application.ToUpper() == application.ToUpper()) && 
+                    platform.Has<PlatformEnum>(featureToggle.Platform) &&
+                    (environment.Has<EnvironmentEnum>(featureToggle.Environment) ||
+                    (featureToggle.SubFeatureToggles != null &&
+                        featureToggle.SubFeatureToggles.Where(w => w.Platform != 0 && platform.Has<PlatformEnum>(w.Platform) && environment.Has<EnvironmentEnum>(w.Environment)).Count() > 0)))
+                {
+                    result.Add(featureToggle);
+                }
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Reads in JSON file defining the Feature Toggle information.
         /// </summary>

@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\FeaturesController.cs" />
     <Compile Include="Controllers\ComplexFeaturesController.cs" />
     <Compile Include="Global.asax.cs">

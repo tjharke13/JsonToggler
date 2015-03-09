@@ -11,28 +11,34 @@ using System.Web.Http;
 
 namespace FeatureToggle.API.Controllers
 {
-    public class FeaturesController : ApiController
+    public class FeaturesController : BaseApiController
     {
          private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public FeaturesController()
         {
             _jsonTogglerService = new JsonTogglerService();
-            _environment = JsonConfigHelper.GetEnvironment();
         }
 
         private JsonTogglerService _jsonTogglerService { get; set; }
 
-        protected EnvironmentEnum _environment { get; set; }
-
         [HttpGet]
-        public HttpResponseMessage Get(PlatformEnum platform, string application = "ALL")
+        public HttpResponseMessage Get(EnvironmentEnum environment, PlatformEnum platform, string application = "ALL")
         {
             log.DebugFormat("GetAllForPlatform: {0}", platform.ToString());
 
             HttpResponseMessage response;
+
             try
             {
+                var propertyErrors = VerifyProperties(platform, environment);
+
+                if(propertyErrors.Errors.Count > 0)
+                {
+                    response = Request.CreateResponse(HttpStatusCode.BadRequest, propertyErrors);
+                    return response;
+                }
+
                 var features = _jsonTogglerService.GetAllFeatureTogglesForPlatformAndApplication(platform, application);
 
                 var ftResults = new List<FeatureToggleResult>();
@@ -40,7 +46,7 @@ namespace FeatureToggle.API.Controllers
                 {
                     var ftResult = new FeatureToggleResult();
                     ftResult.Name = feature.Name;
-                    ftResult.IsEnabled = feature.Platform.Has<PlatformEnum>(platform) && feature.Environment.Has<EnvironmentEnum>(_environment);
+                    ftResult.IsEnabled = feature.Platform.Has<PlatformEnum>(platform) && feature.Environment.Has<EnvironmentEnum>(environment);
                     ftResult.FilterValues = feature.FilterValues;
                     ftResult.CommandType = feature.CommandType.HasValue ? (int)feature.CommandType.Value : 0;
                     ftResult.Command = feature.Command;
@@ -53,7 +59,7 @@ namespace FeatureToggle.API.Controllers
                             var subft = new SubFeatureToggleResult();
 
                             subft.Name = subFeature.Name;
-                            subft.IsEnabled = subFeature.Platform.Has<PlatformEnum>(platform) && subFeature.Environment.Has<EnvironmentEnum>(_environment);
+                            subft.IsEnabled = subFeature.Platform.Has<PlatformEnum>(platform) && subFeature.Environment.Has<EnvironmentEnum>(environment);
                             subft.FilterValues = subFeature.FilterValues;
                             subft.CommandType = subFeature.CommandType.HasValue ? (int)subFeature.CommandType.Value : 0;
                             subft.Command = subFeature.Command;
