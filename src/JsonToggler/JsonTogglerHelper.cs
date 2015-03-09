@@ -22,7 +22,7 @@ namespace JsonToggler
             if (isTestMode)
                 return true;
 
-            if (featureToggle == null)
+            if (featureToggle == null || featureToggle.Environment == EnvironmentEnum.NONE)
                 return false;
 
             if (!string.IsNullOrEmpty(featureToggle.Application) && featureToggle.Application.ToUpper() != "ALL" && applications.Where(w => w.ToUpper() == featureToggle.Application.ToUpper() || w.ToUpper() == "ALL").Count() == 0)

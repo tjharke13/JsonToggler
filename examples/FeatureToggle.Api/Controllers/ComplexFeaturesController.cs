@@ -1,5 +1,4 @@
 ﻿using JsonToggler;
-using JsonToggler;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -30,11 +29,11 @@ namespace FeatureToggle.API.Controllers
             HttpResponseMessage response;
             try
             {
-                var propertyErrors = VerifyProperties(platform, environment);
+                var validationResult = VerifyProperties(platform, environment);
 
-                if (propertyErrors.Errors.Count > 0)
+                if (validationResult.Errors.Count > 0)
                 {
-                    response = Request.CreateResponse(HttpStatusCode.BadRequest, propertyErrors);
+                    response = Request.CreateResponse(HttpStatusCode.BadRequest, validationResult);
                     return response;
                 }
 
@@ -72,5 +71,32 @@ namespace FeatureToggle.API.Controllers
             return response;
         }
 
+        [HttpGet]
+        public HttpResponseMessage Disabled()
+        {
+            log.Debug("Get Disabled features called.");
+
+            HttpResponseMessage response;
+            try
+            {
+                var result = new List<IFeatureToggle>();
+                var features = _jsonTogglerService.GetAllFeatureToggles();
+
+                foreach (var feature in features)
+                {
+                    if (feature.Environment == EnvironmentEnum.NONE)
+                        result.Add(feature);
+                }
+
+                response = Request.CreateResponse(HttpStatusCode.OK, result.OrderBy(o => o.Name));
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error occurred", ex);
+                response = Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+            return response;
+        }
     }        
 }

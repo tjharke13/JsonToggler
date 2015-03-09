@@ -12,6 +12,7 @@ namespace JsonToggler
     [System.Flags]
     public enum EnvironmentEnum
     {
+        NONE=0,
         LOCAL=1,
         DEV=2,
         QAS=4,
