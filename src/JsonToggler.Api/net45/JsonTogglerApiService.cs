@@ -11,10 +11,8 @@ using JsonToggler;
 
 namespace JsonToggler.Api
 {
-    public class JsonTogglerApiService
+    public class JsonTogglerApiService : BaseJsonTogglerService
     {
-        private List<IFeatureToggle> _featureToggles;
-
         public JsonTogglerApiService(JsonServiceInfo serviceInfo)
         {
             _featureToggles = this.GetFeatureToggles(serviceInfo);
@@ -22,18 +20,6 @@ namespace JsonToggler.Api
             {
                 _featureToggles = new List<IFeatureToggle>();
             }
-        }
-
-        public T GetFeatureToggle<T>() where T : FeatureToggle, new()
-        {
-            string name = typeof(T).Name;
-
-            var feature = _featureToggles.Where(w => w.GetType() == typeof(T)).FirstOrDefault();
-
-            if (feature == null)
-                feature = new T() { Name = name.Replace("_", " ").SplitCamelCase(" ") };
-
-            return (T)feature;
         }
 
         private List<IFeatureToggle> GetFeatureToggles(JsonServiceInfo serviceInfo)
