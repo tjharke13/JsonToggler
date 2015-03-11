@@ -142,6 +142,30 @@ namespace JsonToggler
         /// <returns></returns>
         public virtual DataSet FilterDataSet<TFilterType>(DataSet data, string columnName, IFeature featureToggle, bool isFeatureEnabled, bool showOnlyItemsSpecified = false)
         {
+            var dt = data.Tables[0];
+            var updatedDataTable = this.FilterDataTable<TFilterType>(dt, columnName, featureToggle, isFeatureEnabled, showOnlyItemsSpecified);
+
+
+            data.Tables.RemoveAt(0);
+
+            var dataTables = new List<DataTable>();
+            dataTables.Add(updatedDataTable);
+
+            //We want to make sure if their are multiple data tables that they are are in the same order.
+            foreach (DataTable table in data.Tables)
+            {
+                dataTables.Add(table);
+            }
+
+            data.Tables.Clear();
+            data.Tables.AddRange(dataTables.ToArray());
+            data.AcceptChanges();
+
+            return data;
+        }
+
+        public virtual DataTable FilterDataTable<TFilterType>(DataTable data, string columnName, IFeature featureToggle, bool isFeatureEnabled, bool showOnlyItemsSpecified = false)
+        {
             if (featureToggle.FilterValues != null && featureToggle.FilterValues.Count > 0)
             {
                 var itemsToFilter = featureToggle.FilterValues;
@@ -159,23 +183,21 @@ namespace JsonToggler
                 {
                     //Because this feature isn't enabled yet we want to remove the rows that are being added with this feature.
                     //Get list of Rows to Remove
-                    var rowsToRemove = data.Tables[0].AsEnumerable().Where(r => filterList.Contains(r.Field<TFilterType>(columnName))).ToList();
+                    var rowsToRemove = data.AsEnumerable().Where(r => filterList.Contains(r.Field<TFilterType>(columnName))).ToList();
 
                     //Filter Table
-                    rowsToRemove.ForEach(r => data.Tables[0].Rows.Remove(r));
-                    data.AcceptChanges();
+                    rowsToRemove.ForEach(r => data.Rows.Remove(r));
                 }
                 else if (showOnlyItemsSpecified && isFeatureEnabled)
                 {
                     //Because this is a reverseFilter we aren't removing rows, but only showing specific ones that are defined in the feature.
                     //The feature must be enabled to show only these certain items.
                     //Get list of Rows to Remove
-                    var rowsToShow = data.Tables[0].AsEnumerable().Where(r => !filterList.Contains(r.Field<TFilterType>(columnName))).ToList();
+                    var rowsToShow = data.AsEnumerable().Where(r => !filterList.Contains(r.Field<TFilterType>(columnName))).ToList();
 
                     //Filter Table
-                    data.Tables[0].Rows.Clear();
-                    data.Tables[0].Rows.Add(rowsToShow);
-                    data.AcceptChanges();
+                    data.Rows.Clear();
+                    data.Rows.Add(rowsToShow);
                 }
             }
 

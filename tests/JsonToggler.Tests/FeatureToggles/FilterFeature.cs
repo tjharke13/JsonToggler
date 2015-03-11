@@ -13,7 +13,7 @@ namespace JsonToggler.Tests.FeatureToggles
     {
         public DataSet GetFilteredGuidItems(DataSet data, bool shouldReverseFilter = false)
         {
-            return base.FilterDataSet<Guid>(data, "Id", this, shouldReverseFilter);
+            return base.FilterDataSet<Guid>(data, "Id", shouldReverseFilter);
         }
 
         public IEnumerable<JsonToggler.Tests.TestFilterData.TestGuidObject> GetFilteredGuidObjects(IEnumerable<JsonToggler.Tests.TestFilterData.TestGuidObject> data, bool shouldReverseFilter = false)

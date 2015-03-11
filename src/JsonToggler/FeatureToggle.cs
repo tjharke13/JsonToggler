@@ -88,9 +88,18 @@ namespace JsonToggler
         /// Filters a dataset based upon the column and feature toggle.
         /// </summary>
         /// <returns></returns>
-        public virtual DataSet FilterDataSet<TFilterType>(DataSet data, string columnName, IFeature featureToggle, bool showOnlyItemsSpecified = false)
+        public virtual DataSet FilterDataSet<TFilterType>(DataSet data, string columnName, bool showOnlyItemsSpecified = false)
         {
             return _togglerHelper.FilterDataSet<TFilterType>(data, columnName, this, this.IsEnabled(), showOnlyItemsSpecified);
+        }
+
+        /// <summary>
+        /// Filters a datatable based upon the column and feature toggle.
+        /// </summary>
+        /// <returns></returns>
+        public virtual DataTable FilterDataTable<TFilterType>(DataTable data, string columnName, bool showOnlyItemsSpecified = false)
+        {
+            return _togglerHelper.FilterDataTable<TFilterType>(data, columnName, this, this.IsEnabled(), showOnlyItemsSpecified);
         }
 
         /// <summary>

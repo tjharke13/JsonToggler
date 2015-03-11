@@ -223,10 +223,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\JsonToggler.Api\JsonToggler.Api.csproj">
-      <Project>{5d83cc12-84eb-4b9e-8aea-093b15b6e6c1}</Project>
-      <Name>JsonToggler.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\JsonToggler\JsonToggler.csproj">
       <Project>{6f8aa082-6233-42fc-81f1-ec82e6ab51c9}</Project>
       <Name>JsonToggler</Name>
